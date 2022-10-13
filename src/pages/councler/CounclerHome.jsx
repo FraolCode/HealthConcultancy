@@ -23,13 +23,13 @@ function CounclerHome() {
   }, [])
 
   const getRegions = () => {
-    axios("http://localhost:5000/api/regions")
+    axios("https://healthconcultancy.herokuapp.com/api/regions")
       .then((res) => setRegions(res.data))
       .catch((err) => console.log(err));
   };
 
   const getUsers = () => {
-    axios("http://localhost:5000/api/victim")
+    axios("https://healthconcultancy.herokuapp.com/api/victim")
       .then((res) => setUsers(res.data.filter(
         (y) =>
           y.counclerId == councler._doc._id &&
@@ -40,12 +40,12 @@ function CounclerHome() {
   };
   const getannounces = () => {
 
-    axios("http://localhost:5000/api/announce")
+    axios("https://healthconcultancy.herokuapp.com/api/announce")
       .then((res) => setannounces(res.data.filter(x => moment(x.expiredDateTime).diff(Date.now()) > 0)))
       .catch((err) => console.log(err));
   };
   const getAppointments = () => {
-    axios("http://localhost:5000/api/appointment")
+    axios("https://healthconcultancy.herokuapp.com/api/appointment")
       .then((res) => {
         setAppointments(
           res.data.filter(

@@ -16,14 +16,14 @@ function Announcments() {
 
   const getannounces = () => {
 
-    axios("http://localhost:5000/api/announce")
+    axios("https://healthconcultancy.herokuapp.com/api/announce")
       .then((res) => setannounces(res.data.filter(x => moment(x.expiredDateTime).diff(Date.now()) > 0)))
       .catch((err) => console.log(err));
   };
 
   const filterAnn = (e, value) => {
     e.preventDefault()
-    axios("http://localhost:5000/api/announce")
+    axios("https://healthconcultancy.herokuapp.com/api/announce")
       .then((res) => setannounces(res.data.filter(x => x.title.toLowerCase().includes(value) && moment(x.expiredDateTime).diff(Date.now()) > 0)))
       .catch((err) => console.log(err));
 

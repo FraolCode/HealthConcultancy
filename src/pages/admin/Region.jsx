@@ -16,7 +16,7 @@ function Region() {
   }, []);
 
   const getRegions = () => {
-    axios("http://localhost:5000/api/regions")
+    axios("https://healthconcultancy.herokuapp.com/api/regions")
       .then((res) => setRegions(res.data))
       .catch((err) => console.log(err));
   };
@@ -29,7 +29,7 @@ function Region() {
 
   async function registerRegion(event) {
     event.preventDefault();
-    const response = await fetch("http://localhost:5000/api/regions/create", {
+    const response = await fetch("https://healthconcultancy.herokuapp.com/api/regions/create", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

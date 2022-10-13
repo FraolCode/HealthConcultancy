@@ -23,7 +23,7 @@ function AddBlog() {
     formData.append("createdBy", createdByy);
 
     axios
-      .post("http://localhost:5000/api/blogs/create", formData, {})
+      .post("https://healthconcultancy.herokuapp.com/api/blogs/create", formData, {})
       .then((res) => {
         customToast("Successfuly Added", 0);
 

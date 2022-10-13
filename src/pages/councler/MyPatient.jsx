@@ -26,7 +26,7 @@ function MyPatient() {
     e.preventDefault();
 
     axios
-      .post("http://localhost:5000/api/videochat/create", {
+      .post("https://healthconcultancy.herokuapp.com/api/videochat/create", {
         userId: patient._id,
         Link: chatLink,
         createdDateTime: new Date(),
@@ -83,7 +83,7 @@ function MyPatient() {
   };
 
   const getVictims = () => {
-    axios("http://localhost:5000/api/victim")
+    axios("https://healthconcultancy.herokuapp.com/api/victim")
       .then((res) =>
         setVictim(
           res.data.filter(
@@ -101,7 +101,7 @@ function MyPatient() {
     e.preventDefault();
 
     axios
-      .post("http://localhost:5000/api/appointment/create", {
+      .post("https://healthconcultancy.herokuapp.com/api/appointment/create", {
         AppointmentTime:appointmentTime ,
         AppointmentDate: appointmentDate,
         VictimId: victimId._id,

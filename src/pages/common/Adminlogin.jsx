@@ -12,7 +12,7 @@ function Adminlogin() {
 
   async function loginUser(event) {
     event.preventDefault();
-    const response = await fetch("http://localhost:5000/api/users/login", {
+    const response = await fetch("https://healthconcultancy.herokuapp.com/api/users/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -37,7 +37,7 @@ function Adminlogin() {
 
   const sendResetEmail = (e) => {
     e.preventDefault()
-    axios.put(`http://localhost:5000/api/users/changePassword`, {
+    axios.put(`https://healthconcultancy.herokuapp.com/api/users/changePassword`, {
 
       email: resetEmail,
 

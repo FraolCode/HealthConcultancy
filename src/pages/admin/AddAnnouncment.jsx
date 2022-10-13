@@ -34,7 +34,7 @@ function AddAnnouncment() {
 
 
     axios
-      .post("http://localhost:5000/api/announce/create", {
+      .post("https://healthconcultancy.herokuapp.com/api/announce/create", {
 
         title: title,
         detail: detail,
@@ -60,7 +60,7 @@ function AddAnnouncment() {
 
 
     axios
-      .put(`http://localhost:5000/api/announce/update/${item._id}`, {
+      .put(`https://healthconcultancy.herokuapp.com/api/announce/update/${item._id}`, {
 
         title: title2,
         detail: detail2,

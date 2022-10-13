@@ -17,7 +17,7 @@ const data = [];
 
 
 
-axios("http://localhost:5000/api/ccenters/get")
+axios("https://healthconcultancy.herokuapp.com/api/ccenters/get")
   .then((res) => {
     res.data.map((item) => {
       data.push(item);
@@ -40,19 +40,19 @@ function AdminHome() {
   }, []);
 
   const getRegions = () => {
-    axios("http://localhost:5000/api/regions")
+    axios("https://healthconcultancy.herokuapp.com/api/regions")
       .then((res) => setRegions(res.data))
       .catch((err) => console.log(err));
   };
 
   const getUsers = () => {
-    axios("http://localhost:5000/api/users")
+    axios("https://healthconcultancy.herokuapp.com/api/users")
       .then((res) => setUsers(res.data))
       .catch((err) => console.log(err));
   };
 
   const getAppointments = () => {
-    axios("http://localhost:5000/api/appointment")
+    axios("https://healthconcultancy.herokuapp.com/api/appointment")
       .then((res) => {
         setAppointments(res.data);
       })

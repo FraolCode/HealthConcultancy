@@ -15,7 +15,7 @@ function Login() {
     console.log(email, password);
     event.preventDefault();
     axios
-      .post("http://localhost:5000/api/users/login", {
+      .post("https://healthconcultancy.herokuapp.com/api/users/login", {
         email: email,
         password: password,
       })
@@ -55,7 +55,7 @@ function Login() {
   const sendResetEmail = (e) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:5000/api/users/changePassword`, {
+      .put(`https://healthconcultancy.herokuapp.com/api/users/changePassword`, {
         email: resetEmail,
       })
       .then((res) => {

@@ -14,7 +14,7 @@ function Blogs() {
 
     }, []);
     const getBlogs = () => {
-        axios("http://localhost:5000/api/blogs")
+        axios("https://healthconcultancy.herokuapp.com/api/blogs")
             .then((res) => setBlogs(res.data))
             .catch((err) => console.log(err));
     };
@@ -39,7 +39,7 @@ function Blogs() {
 
         e.preventDefault()
 
-        axios("http://localhost:5000/api/blogs")
+        axios("https://healthconcultancy.herokuapp.com/api/blogs")
             .then((res) => setBlogs(res.data.filter(x => x.title.toLowerCase().includes(value))))
             .catch((err) => console.log(err));
 

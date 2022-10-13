@@ -89,7 +89,7 @@ function CounclingCenters() {
     setccenterss(array);
   };
   const getccenters = () => {
-    axios("http://localhost:5000/api/ccenters")
+    axios("https://healthconcultancy.herokuapp.com/api/ccenters")
       .then((res) =>{ 
         var results=[]
         res.data.map((item)=>results.push({...item,...item.Region[0]}))
@@ -100,7 +100,7 @@ function CounclingCenters() {
   };
 
   const getRegions = () => {
-    axios("http://localhost:5000/api/regions")
+    axios("https://healthconcultancy.herokuapp.com/api/regions")
       .then((res) => {
         setRegions(res.data);
        
@@ -116,7 +116,7 @@ function CounclingCenters() {
 
   async function registerccenter(event) {
     event.preventDefault();
-    const response = await fetch("http://localhost:5000/api/ccenters/create", {
+    const response = await fetch("https://healthconcultancy.herokuapp.com/api/ccenters/create", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -24,7 +24,7 @@ function ChangePassword() {
         }
         else {
 
-            axios.put(`http://localhost:5000/api/users/update/${user._id}`, {
+            axios.put(`https://healthconcultancy.herokuapp.com/api/users/update/${user._id}`, {
 
                 password: newPassword,
 

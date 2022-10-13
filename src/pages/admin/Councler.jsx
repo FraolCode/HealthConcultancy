@@ -12,7 +12,7 @@ export const Councler = () => {
   }, []);
 
   const getCouncler = () => {
-    axios("http://localhost:5000/api/councler")
+    axios("https://healthconcultancy.herokuapp.com/api/councler")
       .then((res) => {
         console.log(res.data)
         setCouncler(res.data);
@@ -21,7 +21,7 @@ export const Councler = () => {
   };
 
   const getRegion = () => {
-    axios("http://localhost:5000/api/regions")
+    axios("https://healthconcultancy.herokuapp.com/api/regions")
       .then((res) => {
         setRegions(res.data);
         console.log(res.data)
@@ -33,7 +33,7 @@ export const Councler = () => {
     e.preventDefault();
     item.status = !item.status
     console.log("item",item)
-    axios.put(`http://localhost:5000/api/councler/update/${id}`, {
+    axios.put(`https://healthconcultancy.herokuapp.com/api/councler/update/${id}`, {
       item
     })
       .then((res) => {

@@ -13,7 +13,7 @@ function Register() {
 
   async function registerUser(event) {
     event.preventDefault();
-    const response = await fetch("http://localhost:5000/api/users/create", {
+    const response = await fetch("https://healthconcultancy.herokuapp.com/api/users/create", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -16,7 +16,7 @@ function BlogDetails() {
     getBlogs();
   }, []);
   const getBlogs = () => {
-    axios("http://localhost:5000/api/blogs")
+    axios("https://healthconcultancy.herokuapp.com/api/blogs")
       .then((res) => setBlogs(res.data))
       .catch((err) => console.log(err));
   };

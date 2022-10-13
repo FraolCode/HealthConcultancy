@@ -21,7 +21,7 @@ function VictimAppointment() {
 
   
   const getAppointments = () => {
-    axios("http://localhost:5000/api/appointment")
+    axios("https://healthconcultancy.herokuapp.com/api/appointment")
       .then((res) => {
         setAppointments(
           res.data.filter((y) => y.VictimId == victim._doc._id)
@@ -39,7 +39,7 @@ function VictimAppointment() {
 
  const getUsers= ()=>{
 
-  axios.get(`http://localhost:5000/api/users`)
+  axios.get(`https://healthconcultancy.herokuapp.com/api/users`)
   .then((res)=> setUsers(res.data))
   .catch((err)=>console.log(err))
 

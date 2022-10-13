@@ -10,7 +10,7 @@ function Blog() {
     getBlogs();
   }, []);
   const getBlogs = () => {
-    axios("http://localhost:5000/api/blogs")
+    axios("https://healthconcultancy.herokuapp.com/api/blogs")
       .then((res) => setBlogs(res.data))
       .catch((err) => console.log(err));
   };
@@ -20,7 +20,7 @@ function Blog() {
     e.preventDefault();
   
     axios
-    .delete(`http://localhost:5000/api/blogs/delete/${id}`)
+    .delete(`https://healthconcultancy.herokuapp.com/api/blogs/delete/${id}`)
     .then((res) => {
       customToast("Successfully deleted",0);
       refreshPage();

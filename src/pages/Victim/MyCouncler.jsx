@@ -59,7 +59,7 @@ function MyCouncler() {
   };
 
   const getCounclers = () => {
-    axios("http://localhost:5000/api/councler")
+    axios("https://healthconcultancy.herokuapp.com/api/councler")
       .then((res) =>
         setCouncler(res.data.filter((y) => y._id == victim._doc.counclerId)[0])
       )
@@ -67,7 +67,7 @@ function MyCouncler() {
   };
 
   const getvideochat = () => {
-    axios("http://localhost:5000/api/videochat")
+    axios("https://healthconcultancy.herokuapp.com/api/videochat")
       .then((res) => {
         let result = res.data
           .filter((y) => y.userId == victim._doc._id)

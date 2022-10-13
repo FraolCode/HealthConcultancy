@@ -11,7 +11,7 @@ const Announcment = () => {
     
   }, []);
   const getannounces = () => {
-    axios("http://localhost:5000/api/announce")
+    axios("https://healthconcultancy.herokuapp.com/api/announce")
       .then((res) => setannounces(res.data))
       .catch((err) => console.log(err));
   };

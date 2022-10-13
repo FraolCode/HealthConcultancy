@@ -86,7 +86,7 @@ function CounclerSearch() {
     getRegion();
   });
   const getCouncler = () => {
-    axios("http://localhost:5000/api/councler")
+    axios("https://healthconcultancy.herokuapp.com/api/councler")
       .then((res) => {
         console.log(res.data);
         nameQ && location
@@ -116,13 +116,13 @@ function CounclerSearch() {
   };
 
   const getUsers = () => {
-    axios("http://localhost:5000/api/users")
+    axios("https://healthconcultancy.herokuapp.com/api/users")
       .then((res) => setUsers(res.data))
       .catch((err) => console.log(err));
   };
 
   const getRegion = () => {
-    axios("http://localhost:5000/api/regions")
+    axios("https://healthconcultancy.herokuapp.com/api/regions")
       .then((res) => {
         setRegions(res.data);
         console.log(res.data);
@@ -136,7 +136,7 @@ function CounclerSearch() {
     e.preventDefault();
 
     axios
-      .post("http://localhost:5000/api/victim/create", {
+      .post("https://healthconcultancy.herokuapp.com/api/victim/create", {
         fullName: fullName,
         userName: userName,
         email: email,

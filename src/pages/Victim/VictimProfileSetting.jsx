@@ -15,7 +15,7 @@ function VictimProfileSetting() {
   const [gender, setGender] = useState(user._doc.gender)
   const updateProfile = (e) => {
     e.preventDefault();
-    axios.put(`http://localhost:5000/api/users/update/${user._id}`, {
+    axios.put(`https://healthconcultancy.herokuapp.com/api/users/update/${user._id}`, {
 
       fullName: fullName,
       userName: userName,

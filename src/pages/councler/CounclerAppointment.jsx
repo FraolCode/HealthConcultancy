@@ -13,7 +13,7 @@ function CounclerAppointment() {
   }, []);
 
   const getAppointments = () => {
-    axios("http://localhost:5000/api/appointment")
+    axios("https://healthconcultancy.herokuapp.com/api/appointment")
       .then((res) => {
         setAppointments(
           res.data.filter((y) => y.CounclerId == councler._doc._id)

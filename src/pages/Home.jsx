@@ -30,13 +30,13 @@ function Home() {
     getLocation();
   }, []);
   const getBlogs = () => {
-    axios("http://localhost:5000/api/blogs")
+    axios("https://healthconcultancy.herokuapp.com/api/blogs")
       .then((res) => setBlogs(res.data))
       .catch((err) => console.log(err));
   };
 
   const getLocation = () => {
-    axios.get("http://localhost:5000/api/ccenters")
+    axios.get("https://healthconcultancy.herokuapp.com/api/ccenters")
       .then((res) => setLocation(res.data))
       .catch((err) => console.log(err))
   }
@@ -76,7 +76,7 @@ function Home() {
 
   function registerMessage(event) {
     event.preventDefault();
-    const url = "http://localhost:5000/api/messages/create"
+    const url = "https://healthconcultancy.herokuapp.com/api/messages/create"
     axios.post(url, {
       name: name,
       email: email,

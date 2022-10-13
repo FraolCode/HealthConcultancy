@@ -11,7 +11,7 @@ function Contactus() {
 
    function registerMessage(event) {
     event.preventDefault();
-    const url = "http://localhost:5000/api/messages/create"
+    const url = "https://healthconcultancy.herokuapp.com/api/messages/create"
 
     axios.post(url, {
         name:name,

@@ -8,7 +8,7 @@ function Messages() {
   const [messages, setMessages] = useState([]);
 
   const getMessages = () => {
-    axios("http://localhost:5000/api/messages")
+    axios("https://healthconcultancy.herokuapp.com/api/messages")
       .then((res) => setMessages(res.data))
       .catch((err) => console.log(err));
   };

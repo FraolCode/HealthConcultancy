@@ -33,7 +33,7 @@ function VictimRequest() {
     getVictims();
   }, []);
   const getVictims = () => {
-    axios("http://localhost:5000/api/victim")
+    axios("https://healthconcultancy.herokuapp.com/api/victim")
       .then((res) =>
         setVictim(
           res.data.filter(
@@ -54,7 +54,7 @@ function VictimRequest() {
     }
 
     axios
-      .post(`http://localhost:5000/api/victim/updatev`, {
+      .post(`https://healthconcultancy.herokuapp.com/api/victim/updatev`, {
         item,
       })
       .then((res) => {

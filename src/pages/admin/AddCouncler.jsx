@@ -13,7 +13,7 @@ const AddCouncler = () => {
     getccenters();
   }, []);
   const getccenters = () => {
-    axios("http://localhost:5000/api/ccenters")
+    axios("https://healthconcultancy.herokuapp.com/api/ccenters")
       .then((res) => {
         setCCenters(res.data);
         setCCentersId(CCenters[0]);
@@ -52,7 +52,7 @@ const AddCouncler = () => {
     formData.append("gender", gender);
 
     axios
-      .post("http://localhost:5000/api/councler/create", formData, {})
+      .post("https://healthconcultancy.herokuapp.com/api/councler/create", formData, {})
       .then((res) => {
         customToast("Successfuly Added", 0);
 
