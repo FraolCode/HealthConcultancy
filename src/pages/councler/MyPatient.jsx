@@ -1,11 +1,16 @@
-import React, { useState, useEffect } from "react";
-
+import React, { useState,useRef, useEffect } from "react";
+import MyChatComponent from '../Talk'
 import axios from "axios";
 import { decodeToken } from "react-jwt";
 import { JitsiMeeting } from "@jitsi/react-sdk";
 import Talk from "talkjs";
 import {customToast} from '../../customToast'
+import { useCallback } from "react";
 function MyPatient() {
+  const chatboxEl = useRef();
+
+
+
   const [victims, setVictim] = useState([]);
 
   const token = localStorage.getItem("token");
@@ -20,13 +25,16 @@ function MyPatient() {
   const [appointmentDate, setAppointmentDate] = useState("");
   const [appointmentTime, setAppointmentTime] = useState("");
 
+  const [otherUser,setOtherUser]=useState([])
+  const [currentUser,setCurrentUser]=useState([])
+
   const [patient, setPatient] = useState([]);
 
   const sendLink = (e) => {
     e.preventDefault();
 
     axios
-      .post("https://healthconcultancy.herokuapp.com/api/videochat/create", {
+      .post("http://localhost:5000/api/videochat/create", {
         userId: patient._id,
         Link: chatLink,
         createdDateTime: new Date(),
@@ -39,51 +47,38 @@ function MyPatient() {
     getVictims();
   }, []);
 
+
+
   const chat = (chatVictim) => {
-    Talk.ready
-      .then(() => {
-        const currentUser = new Talk.User({
-          id: councler._doc._id,
-          name: councler.fullName,
-          email: councler.email,
-          photoUrl: councler._doc.img,
-          welcomeMessage: "Hello I am your counseler feel free to talk !",
-          role: "default",
-        });
+  
+   
+     const  currentser = new Talk.User({
+        id: councler._doc._id,
+        name: councler.fullName,
+        email: councler.email,
+        photoUrl: councler._doc.img,
+        welcomeMessage: "Hello I am your counseler feel free to talk !",
+        role: "default",
+      });
 
-        const otherUser = new Talk.User({
-          id: chatVictim._id,
-          name: chatVictim.fullName,
-          email: chatVictim.email,
-          photoUrl: null,
-          role: "default",
-        });
 
-        const session = new Talk.Session({
-          appId: "txCHGCC2",
-          me: currentUser,
-        });
+   const    otherser = new Talk.User({
+        id: chatVictim._id,
+        name: chatVictim.fullName,
+        email: chatVictim.email,
+        photoUrl: null,
+        role: "default",
+      });
 
-        const conversationId = Talk.oneOnOneId(currentUser, otherUser);
+      setCurrentUser(currentser)
+      setOtherUser(otherser)
 
-        const conversation = session.getOrCreateConversation(conversationId);
-        conversation.setParticipant(currentUser);
-        conversation.setParticipant(otherUser);
-
-        const inbox = session.createInbox();
-        inbox.select(conversation);
-        inbox.mount(document.getElementById("inbox-container"));
-
-        // chatboxEl = window.talkSession.createInbox({
-        //   selected: conversation,
-        // });
-        // chatboxEl.mount(this.container);
-      })
-      .catch((e) => console.error(e));
-  };
+    
+    
+    };
 
   const getVictims = () => {
-    axios("https://healthconcultancy.herokuapp.com/api/victim")
+    axios("http://localhost:5000/api/victim")
       .then((res) =>
         setVictim(
           res.data.filter(
@@ -101,7 +96,7 @@ function MyPatient() {
     e.preventDefault();
 
     axios
-      .post("https://healthconcultancy.herokuapp.com/api/appointment/create", {
+      .post("http://localhost:5000/api/appointment/create", {
         AppointmentTime:appointmentTime ,
         AppointmentDate: appointmentDate,
         VictimId: victimId._id,
@@ -122,6 +117,7 @@ function MyPatient() {
   };
   return (
     <>
+   
       {showModal ? (
         <>
           <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
@@ -141,12 +137,8 @@ function MyPatient() {
                   </button>
                 </div>
                 <div className="relative p-6 flex-auto">
-                  <div
-                    style={{ height: "500px", width: "700px" }}
-                    id="inbox-container"
-                  >
-                    <span>Loading...</span>
-                  </div>
+                <MyChatComponent currentUser={currentUser} otherUser={otherUser}/>
+                 
                 </div>
               </div>
             </div>

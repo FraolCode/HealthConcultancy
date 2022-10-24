@@ -3,23 +3,23 @@ import Talk from "talkjs";
 import { decodeToken } from "react-jwt";
 import axios from "axios";
 import moment from "moment";
-
+import MyChatComponent from "../Talk";
 function MyCouncler() {
   const [councler, setCouncler] = useState([]);
   const [chatNot, setChatNot] = useState([]);
   const token = localStorage.getItem("token");
   const victim = decodeToken(token);
   const [showModal, setShowModal] = useState(false);
-
+  const [otherUser,setOtherUser]=useState([])
+  const [currentUser,setCurrentUser]=useState([])
   useEffect(() => {
     getCounclers();
     getvideochat();
   }, []);
 
   const chat = (coun) => {
-    Talk.ready
-      .then(() => {
-        const currentUser = new Talk.User({
+ 
+        const currentser = new Talk.User({
           id: victim._doc._id,
           name: victim.fullName,
           email: victim.email,
@@ -27,7 +27,7 @@ function MyCouncler() {
           role: "default",
         });
 
-        const otherUser = new Talk.User({
+        const otherser = new Talk.User({
           id: coun._id,
           name: coun.User[0].fullName,
           email: coun.User[0].email,
@@ -35,31 +35,12 @@ function MyCouncler() {
           role: "default",
         });
 
-        const session = new Talk.Session({
-          appId: "txCHGCC2",
-          me: currentUser,
-        });
-
-        const conversationId = Talk.oneOnOneId(currentUser, otherUser);
-
-        const conversation = session.getOrCreateConversation(conversationId);
-        conversation.setParticipant(currentUser);
-        conversation.setParticipant(otherUser);
-
-        const inbox = session.createInbox();
-        inbox.select(conversation);
-        inbox.mount(document.getElementById("inbox-container"));
-
-        // chatboxEl = window.talkSession.createInbox({
-        //   selected: conversation,
-        // });
-        // chatboxEl.mount(this.container);
-      })
-      .catch((e) => console.error(e));
+        setCurrentUser(currentser)
+        setOtherUser(otherser)
   };
 
   const getCounclers = () => {
-    axios("https://healthconcultancy.herokuapp.com/api/councler")
+    axios("http://localhost:5000/api/councler")
       .then((res) =>
         setCouncler(res.data.filter((y) => y._id == victim._doc.counclerId)[0])
       )
@@ -67,7 +48,7 @@ function MyCouncler() {
   };
 
   const getvideochat = () => {
-    axios("https://healthconcultancy.herokuapp.com/api/videochat")
+    axios("http://localhost:5000/api/videochat")
       .then((res) => {
         let result = res.data
           .filter((y) => y.userId == victim._doc._id)
@@ -99,12 +80,8 @@ function MyCouncler() {
                   </button>
                 </div>
                 <div className="relative p-6 flex-auto">
-                  <div
-                    style={{ height: "500px", width: "700px" }}
-                    id="inbox-container"
-                  >
-                    <span>Loading...</span>
-                  </div>
+                <MyChatComponent currentUser={currentUser} otherUser={otherUser}/>
+                
                 </div>
               </div>
             </div>
