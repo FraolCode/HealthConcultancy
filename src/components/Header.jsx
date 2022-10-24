@@ -30,12 +30,14 @@ function Header() {
     localStorage.removeItem("token");
     window.location.href = "/login";
   };
+ 
 
   return (
     <header className="header top-0 sticky shadow-md z-10 ">
       <nav className="navbar navbar-expand-lg header-nav px-10">
         <div className="navbar-header">
-          <a id="mobile_btn" href="#">
+          
+          <a id="mobile_btn" href="javascript:void(0);">
             <span className="bar-icon">
               <span></span>
               <span></span>
